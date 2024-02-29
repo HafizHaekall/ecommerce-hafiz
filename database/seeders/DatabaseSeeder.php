@@ -28,5 +28,33 @@ class DatabaseSeeder extends Seeder
             'password' => Hash::make('admin123'),
             'is_admin' => true
         ]);
+
+        DB::table('users')->insert([
+            'id' => 2,
+            'name' => 'User',
+            'email' => 'user@gmail.com',
+            'password' => Hash::make('user1234'),
+            'is_admin' => false
+        ]);
+
+        DB::table('discounts')->insert([
+            [
+                'code' => 'DISCOUNT10',
+                'percentage' => 10,
+                'start_date' => now(),
+                'end_date' => now()->addMonth(), // Diskon berlaku selama satu bulan dari saat ini
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'code' => 'DISCOUNT20',
+                'percentage' => 20,
+                'start_date' => now(),
+                'end_date' => now()->addMonth(), // Diskon berlaku selama satu bulan dari saat ini
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+        ]);
+        
     }
 }

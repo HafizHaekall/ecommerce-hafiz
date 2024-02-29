@@ -21,11 +21,13 @@
                     @foreach ($order->transactions as $transaction)
                     <p>{{ $transaction->product->name }} - {{ $transaction->amount }} pcs</p>
                     @php
-                    $total_price += $transaction->product->price * $transaction->amount;
+                    // Harga produk setelah diskon
+                    $discounted_product_price = $transaction->product->price * (1 - ($transaction->product->discount_percentage / 100));
+                    $total_price += $discounted_product_price * $transaction->amount;
                     @endphp
                     @endforeach
                     <hr>
-                    <p>Total: Rp{{ $total_price }}</p>
+                    <p>Total: Rp.{{ $total_price }}</p>
                     <hr>
                     @if ($order->is_paid == false && $order->payment_receipt == null && !Auth::user()->is_admin)
                     <form action="{{ route('submit_payment_receipt', $order) }}" method="post" enctype="multipart/form-data">

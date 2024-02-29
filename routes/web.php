@@ -62,3 +62,5 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/profile', [ProfileController::class, 'show_profile'])->name('show_profile');
     Route::post('/profile', [ProfileController::class, 'edit_profile'])->name('edit_profile');
 });
+
+Route::post('/cart', [CartController::class, 'applyDiscount'])->name('apply.discount');
