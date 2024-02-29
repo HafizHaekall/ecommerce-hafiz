@@ -27,7 +27,25 @@
                     @endphp
                     @endforeach
                     <hr>
+<<<<<<< HEAD
                     <p>Total: Rp.{{ $total_price }}</p>
+=======
+                    @if ($total_price >= 200000)
+                        @php
+                            $discount = 0.2 * $total_price;
+                            $disc = '20%';
+                        @endphp
+                    @else
+                        @php
+                            $discount = 0;
+                            $disc = '0%';
+                        @endphp
+                    @endif
+                    @php
+                        $total_bayar = $total_price - $discount;
+                    @endphp
+                    <p>Total: Rp{{ $total_bayar }}</p>
+>>>>>>> 4cb7574750da7c99830d211f60f115c64460ae2c
                     <hr>
                     @if ($order->is_paid == false && $order->payment_receipt == null && !Auth::user()->is_admin)
                     <form action="{{ route('submit_payment_receipt', $order) }}" method="post" enctype="multipart/form-data">
