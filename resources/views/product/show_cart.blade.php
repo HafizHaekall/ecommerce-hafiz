@@ -37,6 +37,7 @@
                             </div>
                         @endforeach
                     </div>
+<<<<<<< HEAD
                     <form action="{{ route('apply.discount') }}" method="post" enctype="multipart/form-data">
                         @csrf
                         <label for="discount_code">Discount Code:</label><br>
@@ -46,6 +47,29 @@
                     @isset($total_price)
                     <div class="d-flex flex-column justify-content-end align-items-end">
                         <h2>Total Price: Rp.{{ $total_price }}</h2>
+=======
+                    @if ($total_price >= 200000)
+                        @php
+                            $discount = 0.2 * $total_price;
+                            $disc = '20%';
+                        @endphp
+                    @else
+                        @php
+                            $discount = 0;
+                            $disc = '0%';
+                        @endphp
+                    @endif
+                    @php
+                        $total_bayar = $total_price - $discount;
+                    @endphp
+
+                    <p>Total Harga: Rp.{{ $total_price }}</p>
+                    <p>Besaran Diskon: {{ $disc }}</p>
+                    <p>Diskon: Rp.{{ $discount }}</p>
+                    <p>Total Bayar: Rp.{{ $total_bayar }}</p>
+                    
+                    <div class="d-flex flex-column justify-content-end align-items-end">
+>>>>>>> 4cb7574750da7c99830d211f60f115c64460ae2c
                         <form action="{{ route('checkout') }}" method="post">
                             @csrf
                             <input type="hidden" name="total_price" value="{{ $total_price }}">
